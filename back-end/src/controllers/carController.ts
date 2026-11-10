@@ -12,6 +12,20 @@ type CreateCarRequest = Request<
  CreateCarDto
 >;
 
+export async function retrieveAll(
+ req: Request,
+ res: Response,
+ next: NextFunction
+): Promise<void> {
+ try {
+   const cars = await service.findAll();
+   res.json(cars);
+ }
+ catch (error) {
+   next(error);
+ }
+}
+
 export async function create(
  req: CreateCarRequest,
  res: Response,
